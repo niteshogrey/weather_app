@@ -7,6 +7,7 @@ const {
     DB_USER: user,
     DB_PASSWORD: password,
     DB_NAME: database,
+    DB_PORT: port
 } = process.env;
 
   const pool = mysql2.createPool({
@@ -14,13 +15,14 @@ const {
     user,
     password,
     database,
+    port,
     connectionLimit: 10,
     waitForConnections:true
 })
 
   const createDatabase = async() =>{
     try {
-        const tempConnection = await mysql2.createConnection({host, user, password})
+        const tempConnection = await mysql2.createConnection({host, user, password, port})
         const dbQuery = `CREATE DATABASE IF NOT EXISTS \`${database}\`;`;
         await tempConnection.query(dbQuery)
         console.log(`Database ${database} created or already exists.`);

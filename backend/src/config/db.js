@@ -20,17 +20,17 @@ const {
     waitForConnections:true
 })
 
-  // const createDatabase = async() =>{
-  //   try {
-  //       const tempConnection = await mysql2.createConnection({host, user, password, port})
-  //       const dbQuery = `CREATE DATABASE IF NOT EXISTS \`${database}\`;`;
-  //       await tempConnection.query(dbQuery)
-  //       console.log(`Database ${database} created or already exists.`);
-  //   } catch (error) {
-  //       console.log("Error create to database!");
-  //       throw error;
-  //   }
-  // }
+  const createDatabase = async() =>{
+    try {
+        const tempConnection = await mysql2.createConnection({host, user, password, port})
+        const dbQuery = `CREATE DATABASE IF NOT EXISTS \`${database}\`;`;
+        await tempConnection.query(dbQuery)
+        console.log(`Database ${database} created or already exists.`);
+    } catch (error) {
+        console.log("Error create to database!");
+        throw error;
+    }
+  }
 
   const checkConnection = async() => {
     try {
@@ -45,6 +45,6 @@ const {
 
   module.exports = {
     pool,
-    // createDatabase,
+    createDatabase,
     checkConnection,
   };

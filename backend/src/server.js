@@ -1,6 +1,6 @@
 const express = require("express");
 const cors = require("cors");
-const { checkConnection } = require('./config/db');
+const { createDatabase, checkConnection } = require('./config/db');
 const  createTable  = require("./utils/dbUtils");
 const user = require("./routes/userRoutes");
 const weather = require("./routes/weatherRoutes");
@@ -23,6 +23,7 @@ const PORT = process.env.PORT || 2000;
 app.listen(PORT, async() =>{
     console.log(`Server is runnin on Port ${PORT}`);
     try {
+        await createDatabase()
         await checkConnection();
         await createTable()
     } catch (error) {

@@ -11,10 +11,20 @@ const WeatherApp = () => {
   const fetchWeather = async () => {
     setErrorMessage("");
     setWeatherData(null);
+    const token = localStorage.getItem("Token");
+  console.log("Token:", token); // Log token for debuggi
+  if (!token) {
+    setErrorMessage("Token is required");
+    return;
+  }
 
     try {
-      const response = await axios.get(`http://localhost:1000/api/weather/${location}`);
-      if (response.data.success) {
+      const response = await axios.get(`http://localhost:1000/api/weather/${location}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      if (response.data.success) {        
         setWeatherData(response.data);
       } else {
         setErrorMessage(response.data.message || "Failed to fetch weather data");

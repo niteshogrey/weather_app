@@ -36,7 +36,7 @@ const Navbar = () => {
         (<button className="bg-red-600 p-2 rounded-full font-semibold" type="button" onClick={handlesignup} >SignUp</button>)
         }
       <div className="w-10 h-10 bg-gray-600 rounded-full flex items-center justify-center text-5xl">
-        <a href="/profile"> <CgProfile/></a>
+        <a href="/"> <CgProfile/></a>
        
       </div>
       </div>
